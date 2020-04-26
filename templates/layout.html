@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    {% if title %}
+        <title>Fined - {{ title }}</title>
+    {% else %}
+        <title>Fined</title>
+    {% endif %}
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
