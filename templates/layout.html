@@ -18,6 +18,19 @@
   </head>
   <body>
     <div class="container">
+        <!-- see flash messags in routes -->
+        <!-- with category is second input in flash and gets the class-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- for only content is enough to have this  -->
         {% block content %}{% endblock %}
     </div>
      <!-- Optional JavaScript -->
