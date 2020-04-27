@@ -1,8 +1,9 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 # in a package you use package.module
 from fined_be import app, db, bcrypt
 from fined_be.forms import RegistrationForm, LoginForm
 from fined_be.models import User, Post
+from flask_login import login_user, current_user, logout_user, login_required
 
 posts = [
     {
@@ -22,12 +23,16 @@ posts = [
 def home():
     return render_template('home.html', posts=posts)
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -38,14 +43,34 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'admin@fined.de' and form.password.data == 'password':
-            flash('Du wurdest erfolgreich angemdeldet!', 'success')
-            return redirect(url_for('home'))
+        user = User.query.filter_by(email=form.email.data).first()
+        # if user exists and password is valid in comparison to db
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            # function takes a user, and boolean for remember
+            login_user(user, remember=form.remember.data)
+            # if next parameter exists it will be that route (want to access specific side after login)
+            next_page = request.args.get('next')
+            # route to next page if exists else to home
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Anmeldung fehlgeschlagen. Bitte Email und Passwort prüfen.', 'danger')
     return render_template('login.html', title='Register', form=form)
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+
+@app.route('/account')
+@login_required
+def account():
+    return render_template('account.html', title='Account')
