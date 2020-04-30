@@ -10,7 +10,7 @@
     </div>
     <div class="content-section">
       <!-- Post  will send the information to the same route-->
-      <form method="POST" action="">
+      <form method="POST" action="" enctype="multipart/form-data">
           <!-- hiden tag for security -->
           {{ form.hidden_tag() }}
           <fieldset class="form-group">
@@ -47,6 +47,16 @@
                       <!-- if there is no error give the positive feedback -->
                       {{ form.email(class="form-control form-control-lg") }}
                   {% endif %}
+              </div>
+              <div class="form-group">
+                <!-- class in here is just for bootstrap - would work wothout (class...) -->
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                  {% for error in form.picture.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                  {% endfor %}
+                {% endif %}
               </div>
           </fieldset>
           <div class="form-group">
