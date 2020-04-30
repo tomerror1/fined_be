@@ -1,41 +1,17 @@
-import os
-import secrets
-from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
-# in a package you use package.module
-from fined_be import app, db, bcrypt
-from fined_be.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from fined_be.models import User, Post
+from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-    {
-        'author': "Tom K.",
-        'title': 'The Backend day',
-        'date_posted': 'April 20, 2020',
-    },
-    {
-        'author': "Tomas G.",
-        'title': 'The Frontend Day',
-        'date_posted': 'April 19, 2020',
-    }
-]
+from fined_be import db, bcrypt
+from fined_be.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from fined_be.models import User, Post
+from fined_be.users.utils import save_picture
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return render_template('home.html', posts=posts)
+users = Blueprint('users', __name__)
 
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/register', methods=['GET', 'POST'])
+@users.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -43,14 +19,14 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash(f'Dein Account wurde erstellt. Du kannst dich ab sofort einloggen.', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@users.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -61,31 +37,20 @@ def login():
             # if next parameter exists it will be that route (want to access specific side after login)
             next_page = request.args.get('next')
             # route to next page if exists else to home
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             flash('Anmeldung fehlgeschlagen. Bitte Email und Passwort prüfen.', 'danger')
     return render_template('login.html', title='Register', form=form)
 
 
-@app.route('/logout')
+@users.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
 
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-    # resize uploaded picture
-    output_size = (125, 125)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-    return picture_fn
 
-@app.route('/account', methods=['GET', 'POST'])
+@users.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -97,7 +62,7 @@ def account():
         current_user.email = form.email.data
         db.session.commit()
         flash('Update erfolgreich.', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('users.account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
