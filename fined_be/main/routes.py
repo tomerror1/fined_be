@@ -21,7 +21,12 @@ posts = [
 @main.route('/')
 @main.route('/home')
 def home():
-    return render_template('home.html', posts=posts)
+    return render_template('dashboard.html', posts=posts)
+
+
+@main.route('/investition')
+def investition():
+    return render_template('investition.html', posts=posts)
 
 
 @main.route('/about')
