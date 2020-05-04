@@ -1,5 +1,4 @@
 from flask import render_template, request, Blueprint
-from fined_be.models import Post
 
 main = Blueprint('main', __name__)
 
