@@ -3,7 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 from fined_be import db, bcrypt
 from fined_be.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from fined_be.models import User, Post
+from fined_be.models import User
 from fined_be.users.utils import save_picture
 
 users = Blueprint('users', __name__)
