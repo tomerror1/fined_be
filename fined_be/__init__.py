@@ -4,9 +4,15 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from fined_be.config import Config
 
-app = Flask(__name__)
+from flask_migrate import Migrate
+
 
 db = SQLAlchemy()
+migrate = Migrate()
+
+# warum funktioniert meine innit app noch nicht ??
+app = Flask(__name__)
+
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 # declace where to login to the login manager
@@ -18,9 +24,11 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
 
+
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    mirgate.init_app(app, db)
 
     # has to be down here, to avoid circular errors
     # we are import blueprint instances
@@ -31,3 +39,4 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
 
     return app
+

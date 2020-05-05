@@ -1,4 +1,5 @@
 from flask import render_template, request, Blueprint
+from fined_be.models import Module, LearningUnit
 
 main = Blueprint('main', __name__)
 
@@ -20,12 +21,14 @@ posts = [
 @main.route('/')
 @main.route('/home')
 def home():
-    return render_template('dashboard.html', posts=posts)
+    modules = Module.query.all()
+    return render_template('dashboard.html', modules=modules)
 
 
 @main.route('/investition')
 def investition():
-    return render_template('investition.html', posts=posts)
+    learning_units = LearningUnit.query.all()
+    return render_template('investition.html', learning_units=learning_units)
 
 
 @main.route('/about')

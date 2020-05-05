@@ -13,12 +13,11 @@
         <div class="section-modules">
         <div class="learning-units">
             <ul>
-            <li>
-                <p>Grundlagen</p>
-            </li>
-            <li>
-                <p>Ansparpläne</p>
-            </li>
+            {% for learning_unit in learning_units %}
+                <li>
+                    <p>{{ learning_unit.name }}</p>
+                </li>
+            {% endfor %}
             </ul>
         </div>
         </div>
