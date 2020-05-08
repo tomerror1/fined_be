@@ -2,5 +2,5 @@ import os
 
 class Config:
     # Security 
-    SECRET_KEY = os.environ.get('fined_be_SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('fined_be_SQLALCHEMY_DATABASE_URI')
+    SECRET_KEY = "02e063133a16ed2428bdc742cefffa74"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///site.db"

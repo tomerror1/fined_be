@@ -11,7 +11,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 # warum funktioniert meine innit app noch nicht ??
-app = Flask(__name__)
+# app = Flask(__name__)
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
@@ -28,7 +28,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
-    mirgate.init_app(app, db)
+    migrate.init_app(app, db)
 
     # has to be down here, to avoid circular errors
     # we are import blueprint instances
