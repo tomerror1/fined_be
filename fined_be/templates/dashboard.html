@@ -14,8 +14,8 @@
                 </a>
             </li>
             <li><a href="/coming-soon">
-                    <img src="../static/assets/development/module.png">
-                    <p>Versicherung</p>
+                    <img src="../static/assets/development/module.png" class="not_available">
+                    <p>Versicherung <br/>(coming soon)</p>
                 </a>
             </li>
             </ul>
@@ -24,8 +24,10 @@
         <div class="column2">
         <div class="profile-card">
             <div class="profile">
-            <img src="../static/assets/development/profilepic.png">
-            <h4>Tom K.</h4>
+            <img src="../static/profile_pics/{{ user.image_file }}">
+            <!-- <img src="../static/assets/development/profilepic.png"> -->
+            <h4>{{ user.username }}</h4>
+            <!-- <h4>Tom K.</h4> -->
             </div>
             <div class="goals">
             <h4>Deine Ziele:</h4>
