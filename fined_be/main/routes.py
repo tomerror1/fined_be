@@ -22,8 +22,12 @@ posts = [
 
 @main.route('/')
 @main.route('/home')
-@login_required
 def home():
+    return render_template('index.html')
+
+@main.route('/dashboard')
+@login_required
+def dashboard():
     modules = Module.query.all()
     user = current_user
     return render_template('dashboard.html', modules=modules, user=user)

@@ -1,0 +1,241 @@
+@import url("style_mq.css");
+
+/* ------------- imported fonts -----------------  */
+/* 
+Google Fonts:
+font-family: 'Libre Baskerville', serif;
+font-family: 'Didact Gothic', sans-serif;
+*/
+
+
+/*------------------- whole page  ----------------*/
+.content {
+    width: 100%;
+    margin: 0 auto;
+    min-width: 359px;
+
+}
+
+/* ------------------ headings & fonts ------------------- */
+
+h1 {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #272343;
+    font-size: 300%;
+}
+
+h2 {
+    font-family: 'Didact Gothic', sans-serif; 
+}
+
+p {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: large;
+}
+
+button {
+    background-color: #f3c623;
+    border-radius: 4px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+}
+
+li {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+
+/* -------------------- navigation bar ---------------- */
+
+.navbar {
+    /* position: fixed; */
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    top: 0;
+    width: 100%;    
+    background-color: lightgray;
+}
+
+.navbar ul {
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style-type: none;
+    width: 100%;
+    margin: 0;  
+    padding-inline-start: 0px; 
+}
+
+
+.navbar li a:hover {
+    background-color: burlywood;
+}
+
+.navbar ul.links {
+    justify-content: space-evenly;
+}
+
+.navbar ul.registration {
+    justify-content: flex-start;
+}
+
+.navbar ul.registration li button {
+    margin-left: 10px;
+}
+
+/* ------------------ section 2 -------------- */
+
+.section_benefits {
+    width: 100%;
+    background-color: lightgray;
+    padding-top: 15px;
+    padding-bottom: 30px;
+
+}
+
+@media (min-width: 1050px){
+.about_finance {
+    min-width: 150px;
+    max-width: 500px;
+}
+}
+
+@media (min-width: 800px){
+/* ----------------- section 1 -----------------  */
+
+
+.welcome {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    height: auto;
+    margin-right: 0%;
+    /* justify-items: center; */
+    align-items: center;
+    grid-gap: 0px 5%;
+}
+
+.picture_landing_page img {
+    width: 60%;
+    height: 60%;
+    min-width: 350px;
+    justify-self: start;
+}
+
+.about_finance {
+    min-width: 150px;
+    height: auto;
+    justify-self: end;
+}
+
+
+
+/* ------------------ section 2 -------------- */
+
+.section_benefits {
+    text-align: center;
+}
+
+.benefits_container {
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    /* grid-template-areas:
+    "benefits benefits benefits"; */
+    justify-items: center;
+    grid-gap: 10px 10px;
+
+}
+
+.benefits {
+        /* grid-area: benefits;  */
+        width: 250px;
+        height: 300px;
+        min-width: 250px;
+        margin-right: 3.33333%;
+        padding: 20px;
+        background: #f3c623;
+        box-sizing: border-box;
+        border-radius: 4px;
+}
+
+
+
+#header-benefits {
+    display: inline-block;
+    /* text-align: center; */
+}
+
+}
+
+
+/* ------------------- max width 799px ---------------------- */
+
+@media (max-width: 799px){
+
+
+/* ----------------- section 1 -----------------  */
+
+.welcome {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(1fr, 1fr));
+    width: 100%;
+    height: auto;
+    margin-right: 0%;
+    /* justify-items: center; */
+    grid-gap: 5px;
+}
+
+.about_finance {
+    min-width: 150px;
+    max-width: 80%;
+    height: auto;
+    justify-self: center;
+}
+
+.picture_landing_page {
+    display: flex;
+    justify-content: center;    
+}
+
+.picture_landing_page img {
+    width: 60%;
+    height: 60%;
+    min-width: 350px;
+}
+
+/* ------------------ section 2 -------------- */
+
+
+.benefits_container {
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(250px, 250px));
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    /* grid-template-areas:
+    "benefits benefits benefits"; */
+    justify-items: center;
+    grid-gap: 10px 10px;
+}
+
+.benefits {
+    /* grid-area: benefits;  */
+    width: 90%;
+    height: auto;
+    min-width: 250px;
+    margin-right: 3.33333%;
+    padding: 20px;
+    background: #f3c623;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+}
