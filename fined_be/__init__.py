@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from fined_be.config import Config
 
 from flask_migrate import Migrate
-
+import fined_be as app
 
 db = SQLAlchemy()
 migrate = Migrate()
