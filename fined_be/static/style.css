@@ -9,8 +9,9 @@
     border-bottom: solid lightgray 2px;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 2fr;
+    grid-template-rows: 40px 1fr 2fr;
     grid-template-areas: 
+    "header header"
     "column1 column2"
     "modules column2"
     ;
@@ -59,6 +60,25 @@ button {
 li {
     font-family: 'Didact Gothic', sans-serif;
 }
+
+/* ----------- header / navbar ------------------  */
+
+.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+    "header_left header_right"
+}
+
+.header_right {
+    display: flex;
+}
+
+.header_right a {
+    align-self: right;
+}
+
 
 /* ----------- column 2 ------------------  */
 
@@ -187,7 +207,7 @@ li {
 /* ---------------------- section 4 --------------- */
 
 .section4 {
-    grid-area: 2/2/3/3;
+    grid-area: 3/2/4/3;
     background-color: lightgray;
     order: 1;
 }
