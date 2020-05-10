@@ -1,6 +1,6 @@
 # FinEd - Financial Education
 
-- Domain: finanz-bildung.com
+- Domain: [finanz-bildung.com](https://finanz-bildung.com)
 - Status: in development
 
 ### About the Product
