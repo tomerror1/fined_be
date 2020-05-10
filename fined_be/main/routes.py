@@ -30,14 +30,14 @@ def home():
 def dashboard():
     modules = Module.query.all()
     user = current_user
-    return render_template('dashboard.html', modules=modules, user=user)
+    return render_template('dashboard.html', modules=modules, user=user, title='Dashboard')
 
 
 @main.route('/investition')
 @login_required
 def investition():
     learning_units = LearningUnit.query.all()
-    return render_template('investition.html', learning_units=learning_units)
+    return render_template('investition.html', learning_units=learning_units, title='Investition')
 
 
 @main.route('/about')

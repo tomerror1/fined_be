@@ -79,6 +79,16 @@ li {
     align-self: right;
 }
 
+.header_right ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header_right ul li {
+    display: inline;
+}
+
 
 /* ----------- column 2 ------------------  */
 

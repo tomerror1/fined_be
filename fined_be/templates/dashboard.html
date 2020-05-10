@@ -4,11 +4,14 @@
         <div class="header">
             <div class="header_left"></div>
             <div class="header_right">
-                <a href="/logout">Logout</a></li>
+            <ul>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
             </div>
         </div>
         <div class="section1">
-            <h2>Hallo Tom, wähle dein Modul aus.</h2>
+            <h2>Hallo {{ user.username }}, wähle dein Modul aus.</h2>
             <h3>Module:</h3>
             </div>
         <div class="section-modules">
@@ -19,7 +22,7 @@
                     <p>Investition</p>
                 </a>
             </li>
-            <li><a href="/coming-soon">
+            <li><a href="">
                     <img src="../static/assets/development/module.png" class="not_available">
                     <p>Versicherung <br/>(coming soon)</p>
                 </a>
@@ -47,11 +50,11 @@
             <ul>
                 <li>
                 <p>Investition:</p>
-                <p>25%</p>
+                <p>0 %</p>
                 </li>
                 <li>
                 <p>Versicherung:</p>
-                <p>0%</p>
+                <p>0 %</p>
                 </li>
             </ul>
             </div>
