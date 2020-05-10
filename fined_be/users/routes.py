@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 @users.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.dashboard'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -26,7 +26,7 @@ def register():
 @users.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -37,7 +37,7 @@ def login():
             # if next parameter exists it will be that route (want to access specific side after login)
             next_page = request.args.get('next')
             # route to next page if exists else to home
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(url_for('main.dashboard'))
         else:
             flash('Anmeldung fehlgeschlagen. Bitte Email und Passwort prüfen.', 'danger')
     return render_template('login.html', title='Register', form=form)

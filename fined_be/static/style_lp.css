@@ -55,7 +55,6 @@ li {
     grid-template-columns: 1fr 2fr 1fr;
     top: 0;
     width: 100%;    
-    background-color: lightgray;
 }
 
 .navbar ul {
