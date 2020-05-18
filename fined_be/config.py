@@ -1,6 +1,8 @@
 import os
-
+import json
+with open("ect/config.json") as config_file:
+        config = json.load(config_file)
 class Config:
     # Security 
-    SECRET_KEY = "02e063133a16ed2428bdc742cefffa74"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///site.db"
+    SECRET_KEY = config.get("SECRET_KEY")
+    SQLALCHEMY_DATABASE_URI = config.get("SQLALCHEMY_DATABASE_URI")
