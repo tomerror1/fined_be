@@ -15,6 +15,10 @@ HTML, CSS, Python, Flask
 - Server: Google Cloud Server
 - Handling requests: NGINX & Gunicorn
 
+### Connected project
+This repository is used, to separately develop the landing page of this project:
+Repository: https://github.com/tomerror1/fined_lp
+
 ### Get it running locally
 Required: 
 - Python 3.6 (or higher)
